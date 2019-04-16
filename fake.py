@@ -13,6 +13,10 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
+@app.route("/pricing")
+def pricing():
+    return render_template('pricing.html', title='About')
+
 # class InputForm(Form):
 #     q = FloatField(validators=[validators.InputRequired()])
 #     r = FloatField(validators=[validators.InputRequired()])

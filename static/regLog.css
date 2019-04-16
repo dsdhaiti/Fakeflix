@@ -7,21 +7,21 @@ html {
 }
 
 body {
-  background: #000000;
+  background: #333;
   font-family: 'Titillium Web', sans-serif;
 }
 
 a {
   text-decoration: none;
-  color: #FF0000;
+  color: #fff;
   transition: .5s ease;
 }
 a:hover {
-  color: #FF0000;
+  color: #fff;
 }
 
 .form {
-  background: #000000;
+  background: #333;
   padding: 40px;
   max-width: 600px;
   margin: 40px auto;
@@ -53,11 +53,11 @@ a:hover {
   transition: .5s ease;
 }
 .tab-group li a:hover {
-  background: #FF0000;
+  background: #fff;
   color: #ffffff;
 }
 .tab-group .active a {
-  background: #FF0000;
+  background: #fff;
   color: #ffffff;
 }
 
