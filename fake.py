@@ -52,7 +52,8 @@ def loginProcessing():
             #    do some processnig with the login information
             #    check to see if they are in the database
 
-            return jsonify({'output': 'Full Name: ' + output})
+            # return jsonify({'output': 'Full Name: ' + output})
+            return render_template('loggedin_home.html')
 
         if request.form['login_form'] == 'Sign-Up':
             firstName = request.form['firstname']
