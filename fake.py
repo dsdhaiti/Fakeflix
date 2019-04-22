@@ -1,4 +1,7 @@
 from flask import Flask, render_template, url_for, request,jsonify
+import random
+import requests
+import json
 # from wtforms import Form, FloatField, validators
 app = Flask(__name__)
 
@@ -37,8 +40,12 @@ def login():
 def fogot_pass():
     return render_template('forgot_password.html')
 
-@app.route("/")
+@app.route("/register")
+def register():
+    return "<h1> Im at the Registeration page</h1>"
+        # render_template('about.html', title='About')
 
+@app.route("/")
 @app.route("/loginProcessing",methods=[ 'POST'])
 def loginProcessing():
     if request.method == 'POST':
@@ -53,7 +60,35 @@ def loginProcessing():
             #    check to see if they are in the database
 
             # return jsonify({'output': 'Full Name: ' + output})
-            return render_template('loggedin_home.html')
+
+            # generate orginal moveis on the first page
+
+            # random movies
+            letters = ['the Dark Knight',
+                       'Inception',
+                       'Interstellar',
+                       'The Intouchables',
+                       'La La Land',
+                       'Inglourious Basterds',
+                       'The Hunt',
+                       'Broke back mountian',
+                       'The notebook'
+                       'Twilight'
+                       'Up']
+
+            # choose a random movie
+            letter_random = random.choice(letters)
+
+
+            key = 'e2a46779'
+
+            api_url = 'http://www.omdbapi.com/?s=' + letter_random + '&apikey=' + key
+
+            response = requests.get(api_url)
+
+            movies = json.loads(response.content)
+            print(movies)
+            return render_template('loggedin_home.html', movies = movies)
 
         if request.form['login_form'] == 'Sign-Up':
             firstName = request.form['firstname']
@@ -66,22 +101,22 @@ def loginProcessing():
 
             return jsonify({'output':  output})
 
+@app.route("/SearchedMovies",methods=[ 'POST'])
+def searchedMovie():
+#     get the information from the form
+#   put the information together to make an api call
+#   test to see that the informtation was goood
+#   send back the loggin page
+
+    if requests == 'Post':
+        if requests.form[''] ==
 
 
+#app.route("/movieChoice",methods=[ 'POST'])
+# def movieChoice():
+# #     take in the movie name
+# #       make the api call
 
-
-    # return " <h1> im working i swear</h1>"
-    # return '<h1>' + output + ':' +  'Full Name:' + output + '</h1>'
-
-
-
-
-
-
-@app.route("/register")
-def register():
-    return "<h1> Im at the Registeration page</h1>"
-        # render_template('about.html', title='About')
 
 
 if __name__ == '__main__':
