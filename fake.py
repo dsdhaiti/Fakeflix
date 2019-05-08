@@ -20,12 +20,9 @@ def about():
 def pricing():
     return render_template('pricing.html', title='About')
 
-# class InputForm(Form):
-#     q = FloatField(validators=[validators.InputRequired()])
-#     r = FloatField(validators=[validators.InputRequired()])
+
 @app.route("/", methods=['GET', 'POST'])
 @app.route("/login")
-
 def login():
     return render_template('regLog.html')
     # form = InputForm(request.form)
@@ -53,7 +50,7 @@ def loginProcessing():
 
             username = request.form['username1']
             password = request.form['password1']
-            print('i worked ')
+
 
             output = 'The username is: ' + str(username) + 'the password is: ' + str(password )
             #    do some processnig with the login information
@@ -66,18 +63,18 @@ def loginProcessing():
             # random movies
             letters = ['the Dark Knight',
                        'Inception',
-                       'Interstellar',
+
                        'The Intouchables',
                        'La La Land',
-                       'Inglourious Basterds',
+
                        'The Hunt',
-                       'Broke back mountian',
                        'The notebook'
                        'Twilight'
                        'Up']
 
             # choose a random movie
             letter_random = random.choice(letters)
+            print('the randm movie is ', letter_random)
 
 
             key = 'e2a46779'
@@ -87,6 +84,7 @@ def loginProcessing():
             response = requests.get(api_url)
 
             movies = json.loads(response.content)
+            print (api_url)
             print(movies)
             return render_template('loggedin_home.html', movies = movies)
 
@@ -101,15 +99,48 @@ def loginProcessing():
 
             return jsonify({'output':  output})
 
-@app.route("/SearchedMovies",methods=[ 'POST'])
+@app.route("/SearchedMovies",methods=['POST'])
 def searchedMovie():
 #     get the information from the form
 #   put the information together to make an api call
 #   test to see that the informtation was goood
 #   send back the loggin page
+    if request.method == 'POST':
+        movieName = request.form['t']
+        print(movieName)
+        key = 'e2a46779'
 
-    if requests == 'Post':
-        if requests.form[''] ==
+        api_url = 'http://www.omdbapi.com/?s=' + movieName + '&apikey=' + key
+
+        response = requests.get(api_url)
+        # base list of movies
+        movie = json.loads(response.content)
+        print(api_url)
+        print(movie)
+
+
+        # filter option 1 year
+
+
+        # filter ofption 2 dorp down list
+
+
+        filter = request.form.get('filter')
+        print('filter is  ', filter)
+
+        filterdict = {"Newest to Oldest" : 0, "Oldest to Newest":1}
+
+        print(movie)
+
+        # newest to oldest
+        if(filter  == 'NTO'):
+            print(' i am nto ')
+        #
+        if (filter == 'OTN'):
+            print(' i am ont ')
+
+        return render_template('loggedin_home.html',movies=movie)
+
 
 
 #app.route("/movieChoice",methods=[ 'POST'])
